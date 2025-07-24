@@ -1,0 +1,218 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+body{
+    background: rgb(247, 221, 176);
+    /* position: relative; */
+}
+
+/* header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+    width: 100%;
+    background: white;
+    position: sticky;
+    top: 50%;
+}
+header img{
+    width: 200px;
+}
+header a{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+} */
+
+body {
+    background: rgb(36, 36, 247);
+}
+.start, .end{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    justify-content: center;
+    background: rgba(20, 0, 0, 1);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.start button, .end button{
+    border: 2px dashed;
+    height: 50px;
+    width: 50%;
+    font-size: 30px;
+    border-radius: 10px;
+    background: linear-gradient(to right, red 10%, blue 20%, green, yellow);
+    background-clip: text;
+    color: transparent;
+    cursor: pointer;
+    border-image: linear-gradient(to right, red, green , blue) 1 1 0 0;
+}
+.start h1{
+    background: linear-gradient(to bottom right, yellow, indigo, pink, burlywood);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(20, 0, 0, 0.5);
+    font-variant: small-caps;
+}
+.start h3{
+    margin: 20px 0;
+}
+.start.vanish{
+    animation: removeStart 1s ease forwards;
+}
+@keyframes removeStart{
+    from{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to{
+        /* opacity: 0; */
+        pointer-events: none;
+        transform: translateY(-100%);
+    }
+}
+
+.end{
+    animation: removeEnd 1s ease forwards;
+}
+@keyframes removeEnd{
+    from{
+        transform: translateY(0%);
+    }
+    to{
+        transform: translateY(100%);
+    }
+}
+.end.appear{
+    animation: appearEnd 1s ease forwards;
+}
+@keyframes appearEnd{
+    from{
+        transform: translateY(100%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+.end button{
+    margin-top: 10px;
+    font-size: 20px;
+    border-image: linear-gradient(to right, red, green , blue) 1 0 0 1;
+}
+.end button:last-child{
+    margin-top: 0px;
+    border-image: linear-gradient(to right, red, green , blue) 0 1 1 0;
+}
+.container {
+    width: min(90%, 1300px);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* border: 2px solid red; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    padding: 100px;
+    box-shadow: 3px 3px 5px 5px rgba(20, 0, 0, 0.5) inset, 3px 3px 3px 4px rgba(20, 0, 0, 0.5);
+}
+.container .school,
+.container .operation .subject,
+.container .operation .question{
+    display: flex;
+    align-items: center;
+}
+.container .school svg,
+.container .operation .subject svg,
+.container .operation .question svg{
+    height: 40px;
+    width: 40px;
+    filter: drop-shadow(1px 1px 1px black);
+}
+.container .school p{
+    font-size: 39px;
+    font-weight: 700;
+    color: orange;
+    text-shadow: 1px 1px 2px black;
+}
+.container .operation .subject p{
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(36, 36, 247);
+    text-shadow: 1px 1px 1px black;
+}
+.container .operation .question svg{
+    filter: drop-shadow(1px 1px 1px black);
+    animation: animateQuestion 3s ease infinite alternate-reverse;
+}
+.container .operation .question p{
+    font-size: 25px;
+    text-shadow: 1px 1px 1px black;
+    animation: animateQuestion 6s ease infinite alternate-reverse;
+}
+@keyframes animateQuestion{
+    from{color: orange; fill: orange;}
+    to{color: rgb(36, 36, 247); fill: rgb(36, 36, 247);}
+}
+.container .operation .answers .options{
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+    gap: 5px;
+    margin-top: 10px;
+}
+.container .operation .answers .options button{
+    border: 1px solid orange;
+    padding: 10px 0;
+    border-radius: 5px;
+    background: rgb(36, 36, 247);
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    font-weight: 600;
+    transition: box-shadow 0.75s ease;
+}
+.container .operation .answers .options button:hover{
+    box-shadow: 4px 4px 5px 2px black inset;
+    /* border: none; */
+    cursor: pointer;
+}
+.container .operation .guide span{
+    font-size: 20px;
+    font-weight: 100;
+}
+
+@media screen and (max-width:700px) {
+    .container {
+        padding: 30px;
+    }
+    .container .school p{
+        font-size: 25px;
+    }
+    .container .operation .subject p{
+        font-size: 20px;
+    }
+    .container .operation .guide span{
+        font-size: 20px;
+    }
+    .container .operation .question p{
+        font-size: 16px;
+    }
+
+    .container .operation .question svg,
+    .container .operation .subject svg,
+    .container .operation .school svg{
+        height: 30px;
+        width: 30px;
+    }
+}
